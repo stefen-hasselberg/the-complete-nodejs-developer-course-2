@@ -9,8 +9,21 @@ const notesFn = require("./notes");
 yargs.command({
   command: "add",
   describe: "Add a new note",
-  handler: function () {
-    console.log("adding a new note");
+  builder: {
+    title: {
+      describe: "Note title",
+      demandOption: true,
+      type: "string",
+    },
+    body: {
+      describe: "Note body",
+      demandOption: true,
+      type: "string",
+    },
+  },
+  handler: function (argv) {
+    console.log(`Title: ${argv.title} `);
+    console.log(`Note body: ${argv.body}`);
   },
 });
 
@@ -40,6 +53,5 @@ yargs.command({
   },
 });
 
-// create read command
-
-console.log(yargs.argv);
+yargs.parse();
+// console.log(yargs.argv);
